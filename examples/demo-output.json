@@ -1,0 +1,320 @@
+{
+  "q2_comparison": {
+    "args": [
+      "compare",
+      "--before",
+      "cn=examples/q2-customer-index-cn.json",
+      "--before",
+      "dn0001=examples/q2-customer-index-dn0001.json",
+      "--before",
+      "dn0002=examples/q2-customer-index-dn0002.json",
+      "--after",
+      "cn=examples/q2-composite-index-cn.json",
+      "--after",
+      "dn0001=examples/q2-composite-index-dn0001.json",
+      "--after",
+      "dn0002=examples/q2-composite-index-dn0002.json"
+    ],
+    "output": {
+      "comparisons": {
+        "cn": {
+          "before": {
+            "analyzed": true,
+            "planning_ms": 0.069,
+            "execution_ms": 0.684,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Remote Fast Query Execution",
+                "actual_rows_per_loop": 5,
+                "actual_loops": 1,
+                "actual_total_ms_per_loop": 0.666,
+                "shared_hit_blocks": 0,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "remote_targets": [
+                  "dn0001",
+                  "dn0002"
+                ]
+              }
+            ],
+            "findings": [
+              {
+                "code": "remote_plan_not_expanded",
+                "path": "0"
+              }
+            ]
+          },
+          "after": {
+            "analyzed": true,
+            "planning_ms": 0.133,
+            "execution_ms": 0.495,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Remote Fast Query Execution",
+                "actual_rows_per_loop": 5,
+                "actual_loops": 1,
+                "actual_total_ms_per_loop": 0.479,
+                "shared_hit_blocks": 0,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "remote_targets": [
+                  "dn0001",
+                  "dn0002"
+                ]
+              }
+            ],
+            "findings": [
+              {
+                "code": "remote_plan_not_expanded",
+                "path": "0"
+              }
+            ]
+          },
+          "root_delta": {
+            "actual_rows_per_loop": 0,
+            "actual_loops": 0,
+            "actual_total_ms_per_loop": -0.18700000000000006,
+            "shared_hit_blocks": 0,
+            "shared_read_blocks": 0,
+            "temp_read_blocks": 0,
+            "temp_written_blocks": 0
+          },
+          "execution_ms_delta": -0.18900000000000006
+        },
+        "dn0001": {
+          "before": {
+            "analyzed": true,
+            "planning_ms": 0.115,
+            "execution_ms": 0.174,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Bitmap Heap Scan",
+                "estimated_rows": 2,
+                "actual_rows_per_loop": 3,
+                "actual_loops": 1,
+                "removed_by_filter_per_loop": 25,
+                "removed_by_recheck_per_loop": 0,
+                "actual_total_ms_per_loop": 0.085,
+                "shared_hit_blocks": 31,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "relation": "orders",
+                "filter": "((orders.order_date >= '2025-06-01'::date) AND (orders.order_date < '2025-07-01'::date))",
+                "recheck_cond": "(orders.customer_id = 4243)"
+              },
+              {
+                "path": "0.0",
+                "node_type": "Bitmap Index Scan",
+                "estimated_rows": 25,
+                "actual_rows_per_loop": 28,
+                "actual_loops": 1,
+                "actual_total_ms_per_loop": 0.019,
+                "shared_hit_blocks": 3,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "index": "idx_customer",
+                "index_cond": "(orders.customer_id = 4243)"
+              }
+            ],
+            "findings": []
+          },
+          "after": {
+            "analyzed": true,
+            "planning_ms": 0.186,
+            "execution_ms": 0.065,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Index Scan",
+                "estimated_rows": 2,
+                "actual_rows_per_loop": 3,
+                "actual_loops": 1,
+                "removed_by_recheck_per_loop": 0,
+                "actual_total_ms_per_loop": 0.032,
+                "shared_hit_blocks": 6,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "relation": "orders",
+                "index": "idx_customer_date",
+                "index_cond": "((orders.customer_id = 4243) AND (orders.order_date >= '2025-06-01'::date) AND (orders.order_date < '2025-07-01'::date))"
+              }
+            ],
+            "findings": []
+          },
+          "root_delta": {
+            "estimated_rows": 0,
+            "actual_rows_per_loop": 0,
+            "actual_loops": 0,
+            "removed_by_recheck_per_loop": 0,
+            "actual_total_ms_per_loop": -0.053000000000000005,
+            "shared_hit_blocks": -25,
+            "shared_read_blocks": 0,
+            "temp_read_blocks": 0,
+            "temp_written_blocks": 0
+          },
+          "execution_ms_delta": -0.10899999999999999
+        },
+        "dn0002": {
+          "before": {
+            "analyzed": true,
+            "planning_ms": 0.119,
+            "execution_ms": 0.124,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Bitmap Heap Scan",
+                "estimated_rows": 2,
+                "actual_rows_per_loop": 2,
+                "actual_loops": 1,
+                "removed_by_filter_per_loop": 20,
+                "removed_by_recheck_per_loop": 0,
+                "actual_total_ms_per_loop": 0.082,
+                "shared_hit_blocks": 25,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "relation": "orders",
+                "filter": "((orders.order_date >= '2025-06-01'::date) AND (orders.order_date < '2025-07-01'::date))",
+                "recheck_cond": "(orders.customer_id = 4243)"
+              },
+              {
+                "path": "0.0",
+                "node_type": "Bitmap Index Scan",
+                "estimated_rows": 25,
+                "actual_rows_per_loop": 22,
+                "actual_loops": 1,
+                "actual_total_ms_per_loop": 0.022,
+                "shared_hit_blocks": 3,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "index": "idx_customer",
+                "index_cond": "(orders.customer_id = 4243)"
+              }
+            ],
+            "findings": []
+          },
+          "after": {
+            "analyzed": true,
+            "planning_ms": 0.167,
+            "execution_ms": 0.055,
+            "nodes": [
+              {
+                "path": "0",
+                "node_type": "Index Scan",
+                "estimated_rows": 2,
+                "actual_rows_per_loop": 2,
+                "actual_loops": 1,
+                "removed_by_recheck_per_loop": 0,
+                "actual_total_ms_per_loop": 0.027,
+                "shared_hit_blocks": 5,
+                "shared_read_blocks": 0,
+                "temp_read_blocks": 0,
+                "temp_written_blocks": 0,
+                "relation": "orders",
+                "index": "idx_customer_date",
+                "index_cond": "((orders.customer_id = 4243) AND (orders.order_date >= '2025-06-01'::date) AND (orders.order_date < '2025-07-01'::date))"
+              }
+            ],
+            "findings": []
+          },
+          "root_delta": {
+            "estimated_rows": 0,
+            "actual_rows_per_loop": 0,
+            "actual_loops": 0,
+            "removed_by_recheck_per_loop": 0,
+            "actual_total_ms_per_loop": -0.05500000000000001,
+            "shared_hit_blocks": -20,
+            "shared_read_blocks": 0,
+            "temp_read_blocks": 0,
+            "temp_written_blocks": 0
+          },
+          "execution_ms_delta": -0.069
+        }
+      }
+    }
+  },
+  "q3_status_index": {
+    "args": [
+      "analyze",
+      "--plan",
+      "dn0001=examples/q3-status-index-dn0001.json"
+    ],
+    "output": {
+      "plans": {
+        "dn0001": {
+          "analyzed": true,
+          "planning_ms": 0.273,
+          "execution_ms": 101.639,
+          "nodes": [
+            {
+              "path": "0",
+              "node_type": "Aggregate",
+              "estimated_rows": 1,
+              "actual_rows_per_loop": 1,
+              "actual_loops": 1,
+              "actual_total_ms_per_loop": 99.94,
+              "shared_hit_blocks": 5558,
+              "shared_read_blocks": 0,
+              "temp_read_blocks": 0,
+              "temp_written_blocks": 0
+            },
+            {
+              "path": "0.0",
+              "node_type": "Gather",
+              "estimated_rows": 2,
+              "actual_rows_per_loop": 2,
+              "actual_loops": 1,
+              "actual_total_ms_per_loop": 101.495,
+              "shared_hit_blocks": 5558,
+              "shared_read_blocks": 0,
+              "temp_read_blocks": 0,
+              "temp_written_blocks": 0
+            },
+            {
+              "path": "0.0.0",
+              "node_type": "Aggregate",
+              "estimated_rows": 1,
+              "actual_rows_per_loop": 1,
+              "actual_loops": 2,
+              "actual_total_ms_per_loop": 92.969,
+              "shared_hit_blocks": 5558,
+              "shared_read_blocks": 0,
+              "temp_read_blocks": 0,
+              "temp_written_blocks": 0
+            },
+            {
+              "path": "0.0.0.0",
+              "node_type": "Seq Scan",
+              "estimated_rows": 100059,
+              "actual_rows_per_loop": 100100,
+              "actual_loops": 2,
+              "removed_by_filter_per_loop": 24940,
+              "actual_total_ms_per_loop": 56.521,
+              "shared_hit_blocks": 5558,
+              "shared_read_blocks": 0,
+              "temp_read_blocks": 0,
+              "temp_written_blocks": 0,
+              "relation": "orders",
+              "filter": "((orders.status)::text = 'paid'::text)"
+            }
+          ],
+          "findings": [
+            {
+              "code": "sequential_scan",
+              "path": "0.0.0.0"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

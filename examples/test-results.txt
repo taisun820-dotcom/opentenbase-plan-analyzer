@@ -1,0 +1,11 @@
+test_compares_real_nodes_by_label_and_uses_root_buffer_counts (test_analyze_plan.AnalyzerTests.test_compares_real_nodes_by_label_and_uses_root_buffer_counts) ... ok
+test_distinguishes_cn_visibility_from_dn_scan (test_analyze_plan.AnalyzerTests.test_distinguishes_cn_visibility_from_dn_scan) ... ok
+test_estimate_only_and_zero_loops_keep_distinct_meanings (test_analyze_plan.AnalyzerTests.test_estimate_only_and_zero_loops_keep_distinct_meanings) ... ok
+test_rejects_duplicate_and_unmatched_labels (test_analyze_plan.AnalyzerTests.test_rejects_duplicate_and_unmatched_labels) ... ok
+test_rejects_text_multiple_statements_and_invalid_tree (test_analyze_plan.AnalyzerTests.test_rejects_text_multiple_statements_and_invalid_tree) ... ok
+test_seq_scan_is_listed_inside_a_real_aggregate_plan (test_analyze_plan.AnalyzerTests.test_seq_scan_is_listed_inside_a_real_aggregate_plan) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.673s
+
+OK
